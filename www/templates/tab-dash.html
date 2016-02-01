@@ -1,0 +1,14 @@
+<ion-view view-title="Arrivals">
+  <ion-content>
+    <ul class="list dash-list">
+      <li class="item arrival" ng-repeat="(stationName, dirs) in arrivals | orderBy:'stationName'">
+        <span class="station-name">{{stationName}}</span>
+        <div class="times" style="float: right">
+          <span class="timebox" ng-class="arrival.line + '-line'" ng-repeat="(dir, arrival) in dirs">
+            <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>

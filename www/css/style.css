@@ -1,0 +1,78 @@
+.dash-list .item {
+  padding-bottom: 12px;
+}
+.direction {
+  text-transform: uppercase;
+}
+.station-name {
+  text-transform: capitalize;
+}
+
+.timebox {
+  background: black;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  text-align: center;
+  margin-left: 5px;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.time {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 7px;
+  background-color: white;
+  display: inline-block;
+}
+
+.ion-archive.rot {
+  display: inline-block;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.direction {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: white;
+}
+
+/* COLORS DUKE, THE COLORS */
+.gold-line .time {
+  color: #ffa700;
+}
+.gold-line .direction {
+}
+.gold-line.timebox { 
+  border-color: #ffa700;
+  background-color: #ffa700;
+}
+.red-line .time {
+ color: #ff5100;
+}
+.red-line .direction {
+}
+.red-line.timebox { 
+  border-color: #ff5100;
+  background-color: #ff5100;
+}
+.green-line .time {
+  color: green;
+}
+.green-line .direction {
+}
+.green-line.timebox { 
+  border-color: green;
+  background-color: green;
+}
+.blue-line .time {
+  color: #30a7fa;
+}
+.blue-line .direction {
+}
+.blue-line.timebox {
+  background-color: #30a7fa;
+  border-color: #30a7fa;
+}
