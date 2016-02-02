@@ -1,0 +1,15 @@
+<ion-view view-title="Train ID: {{trainId}}">
+  <ion-content>
+    <ul class="list station-list">
+      <li class="item arrival" ng-repeat="arrival in arrivals">
+        <span class="capstone" ng-class="arrival.line + '-line'">{{arrival.direction}}</span>
+        <span class="desc">
+          <h2 class="alone">{{arrival.station}}</h2>
+        </span>
+        <div class="time-left">
+          {{arrival.waiting_time}}
+        </div>
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>

@@ -28,16 +28,17 @@ angular.module('starter.services', [])
 
       subscribers[eventName].push(scope);
       scope.$on('$destroy', function() {
-        subscribers.splice(subscribers.indexOf(scope), 1);
+        var subs = subscribers[eventName];
+        subs.splice(subs.indexOf(scope), 1);
       });
     },
     all: function() {
       return _arrivals;
     },
-    forStation: function(station) {
+    by: function(attr, value) {
       var res = [];
-      for(var i = 0; i <= _arrivals.length; i++) {
-        if (_arrivals[i].station == station) {
+      for(var i = 0; i < _arrivals.length; i++) {
+        if (_arrivals[i][attr] == value) {
           res.push(_arrivals[i]);
         }
       }
@@ -47,9 +48,11 @@ angular.module('starter.services', [])
     // for use on dashboard, showing next arrivals
     latestByStation: function() {
       var res = {};
+      // make order of pills consistent
 			var sortedArrivals = _arrivals.sort(function(a,b) {
-        return a.station < b.station ? -1 : 1
+        return (a.station + a.direction) < (b.station + b.direction) ? -1 : 1
       });
+
       for (var i = 0; i < sortedArrivals.length; i++) {
         // don't need station on the end of all these names
         var station = _arrivals[i].station.replace(" station", '');

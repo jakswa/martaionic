@@ -1,7 +1,7 @@
 <ion-view view-title="Arrivals">
   <ion-content>
     <ul class="list dash-list">
-      <li class="item arrival" ng-repeat="(stationName, dirs) in arrivals | orderBy:'stationName'">
+      <li ng-click="stationView(stationName)" class="item arrival" ng-repeat="(stationName, dirs) in arrivals">
         <span class="station-name">{{stationName}}</span>
         <div class="times" style="float: right">
           <span class="timebox" ng-class="arrival.line + '-line'" ng-repeat="(dir, arrival) in dirs">

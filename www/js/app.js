@@ -46,16 +46,16 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
     controller: 'DashCtrl'
   })
 
-  // jake commenting out for now
-  //  .state('tab.chat-detail', {
-  //    url: '/chats/:chatId',
-  //    views: {
-  //      'tab-chats': {
-  //        templateUrl: 'templates/chat-detail.html',
-  //        controller: 'ChatDetailCtrl'
-  //      }
-  //    }
-  //  })
+  .state('station', {
+    url: '/station/:stationName',
+    templateUrl: 'templates/station.html',
+    controller: 'StationCtrl'
+  })
+  .state('train', {
+    url: '/train/:trainId',
+    templateUrl: 'templates/train.html',
+    controller: 'TrainCtrl'
+  })
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/dash');
