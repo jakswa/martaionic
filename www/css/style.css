@@ -38,6 +38,7 @@
 }
 .station-name {
   text-transform: capitalize;
+  line-height: 25px;
 }
 
 .timebox {
