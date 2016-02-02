@@ -1,10 +1,25 @@
 <ion-view view-title="Arrivals">
   <ion-content>
     <ul class="list dash-list">
+      <li class="item item-divider" ng-show="nearbyStations">
+        <span class="icon ion-android-locate locate-wait" ng-show="geowait"></span>
+        Nearby Stations
+      </li>
+      <li ng-click="stationView(stationName.replace(' station', ''))" class="item arrival" ng-repeat="(stationName, dirs) in nearbyStations">
+        <span class="station-name">{{stationName}}</span>
+        <div class="times" style="float: right">
+          <span class="timebox" ng-class="arrival.line + '-line'" ng-repeat="arrival in byDirection(dirs)">
+            <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
+          </span>
+        </div>
+      </li>
+      <li class="item item-divider" ng-show="nearbyStations">
+        All Stations
+      </li>
       <li ng-click="stationView(stationName)" class="item arrival" ng-repeat="(stationName, dirs) in arrivals">
         <span class="station-name">{{stationName}}</span>
         <div class="times" style="float: right">
-          <span class="timebox" ng-class="arrival.line + '-line'" ng-repeat="(dir, arrival) in dirs">
+          <span class="timebox" ng-class="arrival.line + '-line'" ng-repeat="arrival in byDirection(dirs)">
             <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
           </span>
         </div>

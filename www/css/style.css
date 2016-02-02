@@ -16,9 +16,12 @@
   font-size: 1.2em;
   text-transform: uppercase;
 }
+
+
 .station-list .desc {
   display: inline-block;
   text-transform: capitalize;
+  max-width: 60%;
 }
 .station-list .time-left {
   float: right;
@@ -30,6 +33,10 @@
 }
 
 /* dashboard */
+.locate-wait {
+  font-weight: bold;
+  font-size: 1.2em;
+}
 .dash-list .item {
   padding-bottom: 12px;
 }

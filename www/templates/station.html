@@ -4,7 +4,7 @@
       <li ng-click="trainView(arrival.train_id)" class="item arrival" ng-repeat="arrival in arrivals">
         <span class="capstone" ng-class="arrival.line + '-line'">{{arrival.direction}}</span>
         <span class="desc">
-          <h2>{{arrival.line}} line {{arrival.destination}} train</h2>
+          <h2>{{arrival.destination}}</h2>
           <p>Train ID: {{arrival.train_id}}</p>
         </span>
         <div class="time-left">
