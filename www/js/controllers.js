@@ -51,14 +51,14 @@ angular.module('starter.controllers', [])
   
   $scope.timeDisplay = function(arrival) {
     var text = arrival.waiting_time;
-    if (text == 'arriving') {
+    if (['arriving', 'arrived'].indexOf(text) >= 0) {
       return "<i class='icon ion-android-subway'></i>";
     } else if (text == 'boarding') {
       return "<i class='icon ion-archive rot'></i>";
     }
 
-    var seconds = parseInt(arrival.waiting_seconds);
-    return ":" + parseInt(seconds / 60 + 1);
+    // waiting_time should start with a number, and parse to int
+    return ":" + (parseInt(arrival.waiting_time) || 0);
   };
 })
 

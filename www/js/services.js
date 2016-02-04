@@ -48,8 +48,11 @@ angular.module('starter.services', [])
     // for use on dashboard, showing next arrivals
     latestByStation: function() {
       var res = {};
-			var sortedArrivals = _arrivals.slice().sort(function(a,b) {
-        return a.station < b.station ? -1 : 1
+      var sortedArrivals = _arrivals.slice().sort(function(a,b) {
+        if (a.station == b.station) {
+          return a.waiting_seconds < b.waiting_seconds ? -1 : 1;
+        }
+        return a.station < b.station ? -1 : 1;
       });
 
       for (var i = 0; i < sortedArrivals.length; i++) {
