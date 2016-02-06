@@ -8,7 +8,7 @@
       <li ng-click="stationView(stationName.replace(' station', ''))" class="item arrival" ng-repeat="(stationName, dirs) in nearbyStations">
         <span class="station-name">{{stationName}}</span>
         <div class="times" style="float: right">
-          <span class="timebox" ng-class="arrival.line + '-line'" ng-repeat="arrival in byDirection(dirs)">
+          <span class="timebox" ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
             <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
           </span>
         </div>
@@ -19,7 +19,7 @@
       <li ng-click="stationView(stationName)" class="item arrival" ng-repeat="(stationName, dirs) in arrivals">
         <span class="station-name">{{stationName}}</span>
         <div class="times" style="float: right">
-          <span class="timebox" ng-class="arrival.line + '-line'" ng-repeat="arrival in byDirection(dirs)">
+          <span class="timebox"  ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
             <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
           </span>
         </div>

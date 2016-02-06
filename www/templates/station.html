@@ -1,11 +1,15 @@
 <ion-view view-title="{{stationName}}">
   <ion-content>
     <ul class="list station-list">
-      <li ng-click="trainView(arrival.train_id)" class="item arrival" ng-repeat="arrival in arrivals">
-        <span class="capstone" ng-class="arrival.line + '-line'">{{arrival.direction}}</span>
-        <span class="desc">
+      <li  ng-class="arrivalClass(arrival)" ng-click="trainView(arrival.train_id)" class="item arrival" ng-repeat="arrival in arrivals">
+        <span class="capstone">{{arrival.direction}}</span>
+        <span class="desc" ng-hide="arrival.scheduled">
           <h2>{{arrival.destination}}</h2>
           <p>Train ID: {{arrival.train_id}}</p>
+        </span>
+        <span class="desc" ng-show="arrival.scheduled">
+          <h2>Scheduled Train</h2>
+          <p>No realtime data.</p>
         </span>
         <div class="time-left">
           {{arrival.waiting_time}}

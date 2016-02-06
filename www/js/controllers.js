@@ -49,6 +49,14 @@ angular.module('starter.controllers', [])
     return res;
   };
   
+  $scope.timeboxClass = function(arrival) {
+    var ret = {
+      scheduled: arrival.scheduled
+    };
+    ret[arrival.line + '-line'] = true;
+    return ret;
+  };
+
   $scope.timeDisplay = function(arrival) {
     var text = arrival.waiting_time;
     if (['arriving', 'arrived'].indexOf(text) >= 0) {
@@ -70,7 +78,16 @@ angular.module('starter.controllers', [])
     $scope.arrivals = Arrivals.by('station', stationName);
   });
 
+  $scope.arrivalClass = function(arrival) {
+    var ret = {
+      scheduled: arrival.scheduled
+    };
+    ret[arrival.line + '-line'] = true;
+    return ret;
+  };
+
   $scope.trainView = function(trainId) {
+    if (!trainId) return;
     $state.go("train", {trainId: trainId});
   };
   

@@ -22,6 +22,8 @@
   display: inline-block;
   text-transform: capitalize;
   max-width: 60%;
+  position: relative;
+  top: 3px;
 }
 .station-list .time-left {
   float: right;
@@ -82,17 +84,22 @@
 /* COLORS DUKE, THE COLORS */
 
 /* station */
-.gold-line.capstone { 
+.gold-line .capstone { 
   background-color: #ffa700;
 }
-.red-line.capstone { 
+.red-line .capstone { 
   background-color: #ff5100;
 }
-.green-line.capstone {
+.green-line .capstone {
   background-color: green;
 }
-.blue-line.capstone {
+.blue-line .capstone {
   background-color: #30a7fa;
+}
+.scheduled .capstone {
+  border-color: gray;
+  border-width: 2px;
+  border-style: dashed;
 }
 
 
@@ -124,4 +131,8 @@
 .blue-line.timebox {
   background-color: #30a7fa;
   border-color: #30a7fa;
+}
+
+.times .timebox.scheduled .time {
+  color: #888;
 }
