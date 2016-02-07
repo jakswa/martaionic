@@ -51,6 +51,9 @@ angular.module('starter.controllers', [])
 
   var dirOrder = ['n', 's', 'w', 'e'];
   $scope.byDirection = function(obj) {
+    if (!obj) {
+      return null;
+    }
     var res = {};
     for (var i = 0; i < dirOrder.length; i++) {
       if (obj[dirOrder[i]]) {
@@ -121,4 +124,12 @@ angular.module('starter.controllers', [])
   $scope.$on('arrivalsChanged', function() {
     $scope.arrivals = Arrivals.by('train_id', trainId);
   });
+  $scope.arrivalClass = function(arrival) {
+    var ret = {
+      scheduled: arrival.scheduled
+    };
+    ret[arrival.line + '-line'] = true;
+    return ret;
+  };
+
 });

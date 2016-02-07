@@ -24,7 +24,7 @@
     </div>
     <ion-list>
       <ion-item class="item-divider" ng-show="favs">
-        Favorites
+        Starred
       </ion-item>
       <ion-item ng-click="stationView(stationName)" class="item arrival" ng-repeat="(stationName, dirs) in favs">
         <ion-option-button class="button-assertive"
@@ -38,7 +38,7 @@
           </span>
         </div>
       </ion-item>
-      <ion-item class="item-divider" ng-show="nearbyStations">
+      <ion-item class="item-divider" ng-show="nearbyStations || favs">
         <span class="icon ion-android-locate locate-wait" ng-show="geowait"></span>
         Nearby Stations
       </ion-item>

@@ -1,8 +1,8 @@
 <ion-view view-title="Train ID: {{trainId}}">
   <ion-content>
     <ul class="list station-list">
-      <li class="item arrival" ng-repeat="arrival in arrivals">
-        <span class="capstone" ng-class="arrival.line + '-line'">{{arrival.direction}}</span>
+      <li class="item arrival" ng-class="arrivalClass(arrival)" ng-repeat="arrival in arrivals">
+        <span class="capstone">{{arrival.direction}}</span>
         <span class="desc">
           <h2 class="alone">{{arrival.station.replace(' station', '') }}</h2>
         </span>

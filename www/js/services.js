@@ -10,7 +10,7 @@ angular.module('starter.services', [])
   var _req = null;
 
   var loadArrivals = function() {
-    var req = $http.get("//marta-api.herokuapp.com/arrivals");
+    var req = $http.get("http://marta-api.herokuapp.com/arrivals");
     _req = req.then(function(resp) {
       _arrivals = resp.data;
       for (var i = 0; i < subscribers.arrivalsChanged.length; i++) {
@@ -80,12 +80,14 @@ angular.module('starter.services', [])
     closestTo: function(coords, arrivalsByStation) {
       if (!arrivalsByStation) return null;
       var closestThree = nearestStations(coords);
-      var atLeastOne = null, results = {};
+      var atLeastOne = null;
+      var results = {};
       for(var i = 0; i < closestThree.length; i++) {
         var stationName = closestThree[i].replace(/ station$/, '');
-        results[stationName] = arrivalsByStation[stationName];
-        if (results[stationName]) {
+        var result = arrivalsByStation[stationName];
+        if (result) {
           atLeastOne = true;
+          results[stationName] = result;
         }
       }
       // return null if the object is empty
