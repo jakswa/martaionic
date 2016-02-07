@@ -1,5 +1,27 @@
 <ion-view view-title="Arrivals">
   <ion-content class="dash-list">
+    <div>
+      <div ng-show="emptyResponse" class="feedbox">
+        <h3>no arrivals <span class="icon ion-code"></span></h3>
+        <p>
+          It could be outside of operating hours, or it could be
+          <a target="_blank" href="https://groups.google.com/forum/#!forum/atl-transit-developers">broken</a>.
+          If this persists, you could try
+          <a target="_blank" href="https://github.com/jakswa/martaionic/issues">bugging Jake here</a>.
+        </p>
+      </div>
+      <div ng-show="error" class="feedbox">
+        <h3>Oops. Probably a MARTA API error.</h3>
+        <blockquote>{{error}}</blockquote>
+        <p>
+          Sometimes the MARTA realtime API does a
+          <a target="_blank" href="https://groups.google.com/forum/#!forum/atl-transit-developers">broken</a>.
+          If this persists and you're doing a sad, you could try
+          <a target="_blank" href="https://github.com/jakswa/martaionic/issues">bugging Jake here</a>.
+        </p>
+      </div>
+      <ion-spinner ng-show="loading" icon="lines"></ion-spinner>
+    </div>
     <ion-list>
       <ion-item class="item-divider" ng-show="favs">
         Favorites

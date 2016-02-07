@@ -2,6 +2,9 @@
 .title {
   text-transform: capitalize;
 }
+.feedbox {
+  padding: 16px;
+}
 
 /* station + train */
 .station-list .capstone {

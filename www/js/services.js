@@ -1,9 +1,10 @@
 angular.module('starter.services', [])
 
 .factory('Arrivals', function ArrivalService($http, stationLocations) {
-  var events = ['arrivalsChanged'];
+  var events = ['arrivalsChanged', 'apiError'];
   var subscribers = {
-    arrivalsChanged: []
+    arrivalsChanged: [],
+    apiError: []
   };
   var _arrivals = [];
   var _req = null;
@@ -13,12 +14,19 @@ angular.module('starter.services', [])
     _req = req.then(function(resp) {
       _arrivals = resp.data;
       for (var i = 0; i < subscribers.arrivalsChanged.length; i++) {
-        subscribers.arrivalsChanged[i].$emit('arrivalsChanged');
+        subscribers.arrivalsChanged[i].$emit('arrivalsChanged', _arrivals);
       }
+    }, function(resp) {
+      for (var i = 0; i < subscribers.arrivalsChanged.length; i++) {
+        var statusText = resp.data && resp.data.error ||
+          ("code: " + resp.status + ", message: " + resp.statusText);
+        subscribers.apiError[i].$emit('apiError', statusText);
+      }
+    }).finally(function() {
+      setTimeout(loadArrivals, 10.5 * 1000);
     });
   };
   loadArrivals();
-  setInterval(loadArrivals, 11 * 1000);
 
   return {
     subscribe: function(eventName, scope) {

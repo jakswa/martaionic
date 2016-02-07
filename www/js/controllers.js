@@ -1,22 +1,31 @@
 angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, $state, Arrivals, $ionicPlatform, MioFavs, $ionicListDelegate) {
-  $scope.arrivals = Arrivals.latestByStation();
-  $scope.favs = MioFavs.intersection($scope.arrivals);
+  var savedPositionString = sessionStorage.getItem('position2');
+  if (savedPositionString) {
+    $scope.savedPosition = JSON.parse(savedPositionString);
+  }
+  // not needed i hope
+  //$scope.arrivals = Arrivals.latestByStation();
+  //$scope.favs = MioFavs.intersection($scope.arrivals);
+  $scope.loading = true;
   Arrivals.subscribe('arrivalsChanged', $scope);
-  $scope.$on('arrivalsChanged', function() {
+  Arrivals.subscribe('apiError', $scope);
+  $scope.$on('arrivalsChanged', function(event, rawArrivals, error) {
+    $scope.error = null;
     $scope.arrivals = Arrivals.latestByStation();
     $scope.favs = MioFavs.intersection($scope.arrivals);
+    $scope.emptyResponse = rawArrivals.length == 0;
+    $scope.loading = false;
     if ($scope.savedPosition) {
       $scope.nearbyStations = Arrivals.closestTo($scope.savedPosition, $scope.arrivals);
     }
   });
+  $scope.$on('apiError', function(event, errorMsg) {
+    $scope.error = errorMsg;
+    $scope.loading = false;
+    $scope.emptyResponse = false;
+  })
 
-  // geolocation
-  var savedPositionString = sessionStorage.getItem('position2');
-  if (savedPositionString) {
-    $scope.savedPosition = JSON.parse(savedPositionString);
-    $scope.nearbyStations = Arrivals.closestTo($scope.savedPosition);
-  }
   $scope.geowait = true;
   $ionicPlatform.ready(function() {
     window.navigator.geolocation.getCurrentPosition(function(position) {
