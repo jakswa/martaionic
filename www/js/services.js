@@ -109,6 +109,50 @@ angular.module('starter.services', [])
   }
 })
 
+.factory('MioFavs', function() {
+  var key = 'martaio-favorites';
+  return {
+    all: function() {
+      return favs();
+    },
+    toggle: function(station) {
+      var saved = favs();
+      var removeIndex = saved.indexOf(station);
+      if (removeIndex == -1) {
+        saved.push(station);
+      } else {
+        saved.splice(removeIndex, 1);
+      }
+      favsSave(saved);
+      return saved;
+    },
+    intersection: function(arrivals) {
+      var favs = this.all();
+      var ret = {};
+      var haveOne = false;
+      for(var i = 0; i < favs.length; i++) {
+        var fav = favs[i];
+        if (arrivals[fav]) {
+          haveOne = true;
+          ret[fav] = arrivals[fav];
+        }
+      }
+      if (haveOne) {
+        return ret;
+      } else {
+        return null;
+      }
+    }
+  }
+
+  function favs() {
+    return JSON.parse(localStorage.getItem(key) || '[]');
+  }
+  function favsSave(favs) {
+    return localStorage.setItem(key, JSON.stringify(favs));
+  }
+})
+
 .constant('stationLocations', {
   'bankhead station':{
     latitude:33.772979,

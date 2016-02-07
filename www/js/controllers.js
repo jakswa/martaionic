@@ -1,9 +1,11 @@
 angular.module('starter.controllers', [])
-.controller('DashCtrl', function($scope, $state, Arrivals, $ionicPlatform) {
+.controller('DashCtrl', function($scope, $state, Arrivals, $ionicPlatform, MioFavs, $ionicListDelegate) {
   $scope.arrivals = Arrivals.latestByStation();
+  $scope.favs = MioFavs.intersection($scope.arrivals);
   Arrivals.subscribe('arrivalsChanged', $scope);
   $scope.$on('arrivalsChanged', function() {
     $scope.arrivals = Arrivals.latestByStation();
+    $scope.favs = MioFavs.intersection($scope.arrivals);
     if ($scope.savedPosition) {
       $scope.nearbyStations = Arrivals.closestTo($scope.savedPosition, $scope.arrivals);
     }
@@ -56,6 +58,16 @@ angular.module('starter.controllers', [])
     ret[arrival.line + '-line'] = true;
     return ret;
   };
+
+  $scope.isFavorite = function(stationName) {
+    return MioFavs.all().indexOf(stationName) > -1;
+  };
+  $scope.toggleFavorite = function(stationName) {
+    MioFavs.toggle(stationName);
+    $ionicListDelegate.closeOptionButtons();
+    $scope.favs = MioFavs.intersection($scope.arrivals);
+  };
+
 
   $scope.timeDisplay = function(arrival) {
     var text = arrival.waiting_time;

@@ -39,8 +39,9 @@
   font-weight: bold;
   font-size: 1.2em;
 }
-.dash-list .item {
-  padding-bottom: 12px;
+.dash-list .item-complex .item-content {
+  /* NOTE: overriding ionic default for space reasons */
+  padding-right: 16px;
 }
 .direction {
   text-transform: uppercase;

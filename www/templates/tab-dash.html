@@ -1,29 +1,52 @@
 <ion-view view-title="Arrivals">
-  <ion-content>
-    <ul class="list dash-list">
-      <li class="item item-divider" ng-show="nearbyStations">
-        <span class="icon ion-android-locate locate-wait" ng-show="geowait"></span>
-        Nearby Stations
-      </li>
-      <li ng-click="stationView(stationName.replace(' station', ''))" class="item arrival" ng-repeat="(stationName, dirs) in nearbyStations">
-        <span class="station-name">{{stationName}}</span>
-        <div class="times" style="float: right">
-          <span class="timebox" ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
-            <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
-          </span>
-        </div>
-      </li>
-      <li class="item item-divider" ng-show="nearbyStations">
-        All Stations
-      </li>
-      <li ng-click="stationView(stationName)" class="item arrival" ng-repeat="(stationName, dirs) in arrivals">
+  <ion-content class="dash-list">
+    <ion-list>
+      <ion-item class="item-divider" ng-show="favs">
+        Favorites
+      </ion-item>
+      <ion-item ng-click="stationView(stationName)" class="item arrival" ng-repeat="(stationName, dirs) in favs">
+        <ion-option-button class="button-assertive"
+                           ng-click="toggleFavorite(stationName)">
+          <span class="icon ion-android-star"></span>
+        </ion-option-button>
         <span class="station-name">{{stationName}}</span>
         <div class="times" style="float: right">
           <span class="timebox"  ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
             <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
           </span>
         </div>
+      </ion-item>
+      <ion-item class="item-divider" ng-show="nearbyStations">
+        <span class="icon ion-android-locate locate-wait" ng-show="geowait"></span>
+        Nearby Stations
+      </ion-item>
+      <ion-item ng-click="stationView(stationName.replace(' station', ''))" class="arrival" ng-repeat="(stationName, dirs) in nearbyStations">
+        <ion-option-button ng-class="isFavorite(stationName) ? 'button-assertive' : 'button-positive' "
+                           ng-click="toggleFavorite(stationName)">
+          <span class="icon ion-android-star"></span>
+        </ion-option-button>
+        <span class="station-name">{{stationName}}</span>
+        <div class="times" style="float: right">
+          <span class="timebox" ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
+            <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
+          </span>
+        </div>
+      </ion-item>
+      <li class="item item-divider" ng-show="nearbyStations">
+        All Stations
       </li>
-    </ul>
+      <ion-item ng-click="stationView(stationName)" class="item arrival" ng-repeat="(stationName, dirs) in arrivals">
+        <ion-option-button ng-class="isFavorite(stationName) ? 'button-assertive' : 'button-positive' "
+                           ng-click="toggleFavorite(stationName)">
+          <span class="icon ion-android-star"></span>
+        </ion-option-button>
+        <span class="station-name">{{stationName}}</span>
+        <div class="times" style="float: right">
+          <span class="timebox"  ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
+            <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
+          </span>
+        </div>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
