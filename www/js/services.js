@@ -10,7 +10,7 @@ angular.module('starter.services', [])
   var _req = null;
 
   var loadArrivals = function() {
-    var req = $http.get("http://marta-api.herokuapp.com/arrivals");
+    var req = $http.get("//marta-api.herokuapp.com/arrivals");
     _req = req.then(function(resp) {
       _arrivals = resp.data;
       for (var i = 0; i < subscribers.arrivalsChanged.length; i++) {
