@@ -140,3 +140,26 @@
 .times .timebox.scheduled .time {
   color: #888;
 }
+
+/* browser view */
+@media (min-width: 700px) {
+  body {
+    background: white;
+  }
+  .platform-browser .view-container {
+    background: white !important;
+  }
+  .platform-browser .pane {
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+  }
+  .platform-browser .bar, .platform-browser .pane {
+    width: 700px;
+    margin: 0 auto;
+  }
+  .platform-browser .nav-bar-block[nav-bar=leaving], 
+    .platform-browser .pane[nav-view=leaving] {
+    visibility: hidden;
+    overflow: hidden;
+  }
+}
