@@ -42,6 +42,9 @@
   font-weight: bold;
   font-size: 1.2em;
 }
+.connectivity {
+  background-color: #fcf8e3;
+}
 .dash-list .item-complex .item-content {
   /* NOTE: overriding ionic default for space reasons */
   padding-right: 16px;

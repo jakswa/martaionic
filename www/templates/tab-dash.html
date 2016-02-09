@@ -23,6 +23,9 @@
       <ion-spinner ng-show="loading" icon="lines"></ion-spinner>
     </div>
     <ion-list>
+      <ion-item class="item-divider connectivity" ng-show="connectionProblem">
+        <p><span class="icon ion-information-circled"></span> Problems connecting. Trying again shortly.</p>
+      </ion-item>
       <ion-item class="item-divider" ng-show="favs">
         Starred
       </ion-item>

@@ -17,10 +17,10 @@ angular.module('starter.services', [])
         subscribers.arrivalsChanged[i].$emit('arrivalsChanged', _arrivals);
       }
     }, function(resp) {
+      var statusText = resp.data && resp.data.error;
+      statusText = statusText || ("code: " + resp.status + ", message: " + resp.statusText);
       for (var i = 0; i < subscribers.arrivalsChanged.length; i++) {
-        var statusText = resp.data && resp.data.error ||
-          ("code: " + resp.status + ", message: " + resp.statusText);
-        subscribers.apiError[i].$emit('apiError', statusText);
+        subscribers.apiError[i].$emit('apiError', resp);
       }
     }).finally(function() {
       setTimeout(loadArrivals, 10.5 * 1000);

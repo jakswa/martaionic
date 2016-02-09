@@ -12,6 +12,7 @@ angular.module('starter.controllers', [])
   Arrivals.subscribe('apiError', $scope);
   $scope.$on('arrivalsChanged', function(event, rawArrivals, error) {
     $scope.error = null;
+    $scope.connectionProblem = false;
     $scope.arrivals = Arrivals.latestByStation();
     $scope.favs = MioFavs.intersection($scope.arrivals);
     $scope.emptyResponse = rawArrivals.length == 0;
@@ -20,8 +21,13 @@ angular.module('starter.controllers', [])
       $scope.nearbyStations = Arrivals.closestTo($scope.savedPosition, $scope.arrivals);
     }
   });
-  $scope.$on('apiError', function(event, errorMsg) {
-    $scope.error = errorMsg;
+  $scope.$on('apiError', function(event, resp) {
+    if (resp.status == 0) {
+      $scope.connectionProblem = new Date();
+    } else {
+      $scope.error = "code: " + resp.status + ", message: " + resp.statusText;
+      $scope.connectionProblem = false;
+    }
     $scope.loading = false;
     $scope.emptyResponse = false;
   })
