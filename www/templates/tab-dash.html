@@ -1,5 +1,9 @@
 <ion-view view-title="Arrivals">
   <ion-content class="dash-list">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="refreshArrivals()">
+    </ion-refresher>
     <div>
       <div ng-show="emptyResponse" class="feedbox">
         <h3>no arrivals <span class="icon ion-code"></span></h3>

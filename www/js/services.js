@@ -25,10 +25,12 @@ angular.module('starter.services', [])
     }).finally(function() {
       setTimeout(loadArrivals, 10.5 * 1000);
     });
+    return req;
   };
   loadArrivals();
 
   return {
+    refresh: loadArrivals,
     subscribe: function(eventName, scope) {
       if (events.indexOf(eventName) == -1) {
         throw "Arrivals: Woops. '" + eventName + "' is not a valid subscription event.";

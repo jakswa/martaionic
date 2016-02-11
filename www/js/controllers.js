@@ -30,7 +30,13 @@ angular.module('starter.controllers', [])
     }
     $scope.loading = false;
     $scope.emptyResponse = false;
-  })
+  });
+
+  $scope.refreshArrivals = function() {
+    Arrivals.refresh().finally(function() {
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
 
   $scope.geowait = true;
   $ionicPlatform.ready(function() {
@@ -121,6 +127,12 @@ angular.module('starter.controllers', [])
     $state.go("train", {trainId: trainId});
   };
   
+  $scope.refreshArrivals = function() {
+    Arrivals.refresh().finally(function() {
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
+
 })
 
 .controller('TrainCtrl', function($scope, $state, Arrivals) {
@@ -136,6 +148,12 @@ angular.module('starter.controllers', [])
     };
     ret[arrival.line + '-line'] = true;
     return ret;
+  };
+
+  $scope.refreshArrivals = function() {
+    Arrivals.refresh().finally(function() {
+      $scope.$broadcast('scroll.refreshComplete');
+    });
   };
 
 });
