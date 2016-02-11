@@ -8,8 +8,10 @@ angular.module('starter.services', [])
   };
   var _arrivals = [];
   var _req = null;
+  var timer;
 
   var loadArrivals = function() {
+    clearInterval(timer);
     var req = $http.get("http://marta-api.herokuapp.com/arrivals?" + (new Date()).getTime());
     _req = req.then(function(resp) {
       _arrivals = resp.data;
@@ -23,12 +25,14 @@ angular.module('starter.services', [])
         subscribers.apiError[i].$emit('apiError', resp);
       }
     }).finally(function() {
-      setTimeout(loadArrivals, 10.5 * 1000);
+      timer = setTimeout(loadArrivals, 10.5 * 1000);
     });
+    return req;
   };
   loadArrivals();
 
   return {
+    refresh: loadArrivals,
     subscribe: function(eventName, scope) {
       if (events.indexOf(eventName) == -1) {
         throw "Arrivals: Woops. '" + eventName + "' is not a valid subscription event.";
