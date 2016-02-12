@@ -70,7 +70,14 @@ angular.module('starter.services', [])
       for (var i = 0; i < sortedArrivals.length; i++) {
         // don't need station on the end of all these names
         var station = sortedArrivals[i].station.replace(/ station$/, '');
-        var dir = sortedArrivals[i].direction
+        // in addition to removing ' station' above for lack of space
+        // let's also change "five points" to "5 pnts" so that,
+        // no matter your screen size, i can fit 4 pills on that bugger
+        // (maybe in a few decades we'll have more stations that have 4 directions)
+        if (station === 'five points') {
+          station = '5 pnts';
+        }
+        var dir = sortedArrivals[i].direction;
         if (!res[station]) {
           res[station] = {};
         }
@@ -88,6 +95,9 @@ angular.module('starter.services', [])
       var results = {};
       for(var i = 0; i < closestThree.length; i++) {
         var stationName = closestThree[i].replace(/ station$/, '');
+        if (stationName === 'five points') {
+          stationName = '5 pnts';
+        }
         var result = arrivalsByStation[stationName];
         if (result) {
           atLeastOne = true;

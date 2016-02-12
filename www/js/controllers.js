@@ -107,7 +107,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller('StationCtrl', function($scope, $state, Arrivals) {
-  var stationName = $scope.stationName = $state.params.stationName + " station";
+  var stationName;
+  if ($state.params.stationName === '5 pnts') {
+    stationName = "five points station";
+  } else {
+    stationName =  $state.params.stationName;
+  }
+  $scope.stationName = stationName;
+
   $scope.arrivals = Arrivals.by('station', stationName);
   Arrivals.subscribe('arrivalsChanged', $scope);
   $scope.$on('arrivalsChanged', function() {
