@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, $state, Arrivals, $ionicPlatform, MioFavs, $ionicListDelegate) {
-  var savedPositionString = sessionStorage.getItem('position2');
+  var savedPositionString = localStorage.getItem('position2');
   if (savedPositionString) {
     $scope.savedPosition = JSON.parse(savedPositionString);
   }
@@ -46,9 +46,9 @@ angular.module('starter.controllers', [])
         longitude: position.coords.longitude
       };
       var newJson = JSON.stringify($scope.savedPosition);
-      var oldJson = sessionStorage.getItem('position2');
+      var oldJson = localStorage.getItem('position2');
       if (newJson != oldJson) {
-        sessionStorage.setItem('position2', newJson);
+        localStorage.setItem('position2', newJson);
       }
       $scope.$apply(function() {
         $scope.nearbyStations = Arrivals.closestTo($scope.savedPosition, $scope.arrivals);
