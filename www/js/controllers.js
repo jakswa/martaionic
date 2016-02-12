@@ -107,12 +107,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('StationCtrl', function($scope, $state, Arrivals) {
-  var stationName;
-  if ($state.params.stationName === '5 pnts') {
-    stationName = "five points station";
-  } else {
-    stationName =  $state.params.stationName;
-  }
+  var stationName =  $state.params.stationName + " station";
   $scope.stationName = stationName;
 
   $scope.arrivals = Arrivals.by('station', stationName);

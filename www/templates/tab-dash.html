@@ -38,12 +38,12 @@
                            ng-click="toggleFavorite(stationName)">
           <span class="icon ion-android-star"></span>
         </ion-option-button>
-        <span class="station-name">{{stationName}}</span>
         <div class="times" style="float: right">
           <span class="timebox"  ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
             <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
           </span>
         </div>
+        <span class="station-name">{{stationName}}</span>
       </ion-item>
       <ion-item class="item-divider" ng-show="nearbyStations">
         <span class="icon ion-android-locate locate-wait" ng-show="geowait"></span>
@@ -54,12 +54,12 @@
                            ng-click="toggleFavorite(stationName)">
           <span class="icon ion-android-star"></span>
         </ion-option-button>
-        <span class="station-name">{{stationName}}</span>
         <div class="times" style="float: right">
           <span class="timebox" ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
             <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
           </span>
         </div>
+        <span class="station-name">{{stationName}}</span>
       </ion-item>
       <li class="item item-divider" ng-show="nearbyStations || favs">
         All Stations
@@ -69,12 +69,12 @@
                            ng-click="toggleFavorite(stationName)">
           <span class="icon ion-android-star"></span>
         </ion-option-button>
-        <span class="station-name">{{stationName}}</span>
         <div class="times" style="float: right">
           <span class="timebox"  ng-class="timeboxClass(arrival)" ng-repeat="arrival in byDirection(dirs)">
             <span class="direction">{{arrival.direction}}</span><span class="time" ng-bind-html="timeDisplay(arrival)"></span>
           </span>
         </div>
+        <span class="station-name">{{stationName}}</span>
       </ion-item>
     </ion-list>
   </ion-content>
