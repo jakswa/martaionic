@@ -15,13 +15,21 @@
         </p>
       </div>
       <div ng-show="error" class="feedbox">
-        <h3>Oops. Probably a MARTA API error.</h3>
-        <blockquote>{{error}}</blockquote>
+        <h4 ng-show="error.status != 500">{{error.statusText}}</h4>
+        <h4 ng-show="error.status == 500">Oops. Jake broke something.</h4>
+        <blockquote>
+          {{error.message}}
+        </blockquote>
         <p>
-          Sometimes the MARTA realtime API does a
-          <a target="_blank" href="https://groups.google.com/forum/#!forum/atl-transit-developers">broken</a>.
-          If this persists and you're doing a sad, you could try
-          <a target="_blank" href="https://github.com/jakswa/martaionic/issues">bugging Jake here</a>.
+          Trying again shortly.
+          <span ng-show="error.status != 500">
+            Sometimes the MARTA realtime API does a
+            <a target="_system" href="https://groups.google.com/forum/#!forum/atl-transit-developers">broken</a>.
+          </span>
+          <span>
+            If this persists and you're doing a sad, you could try
+            <a target="_system" href="https://github.com/jakswa/martaionic/issues">bugging Jake here</a>.
+          </span>
         </p>
       </div>
       <ion-spinner ng-show="loading" icon="lines"></ion-spinner>

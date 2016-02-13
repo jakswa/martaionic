@@ -25,7 +25,13 @@ angular.module('starter.controllers', [])
     if (resp.status == 0) {
       $scope.connectionProblem = new Date();
     } else {
-      $scope.error = "code: " + resp.status + ", message: " + resp.statusText;
+      // HAPI sets these in the event of an error
+      // (but MARTA doesn't give us feedback, so usually useless)
+      $scope.error = {
+        status: resp.status,
+        statusText: resp.statusText,
+        message: resp.data.message
+      };
       $scope.connectionProblem = false;
     }
     $scope.loading = false;
