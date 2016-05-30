@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-.controller('DashCtrl', function($scope, $state, Arrivals, $ionicPlatform, MioFavs, $ionicListDelegate) {
+.controller('DashCtrl', function($scope, $state, Arrivals, MioFavs, $ionicPlatform, MioLocation, $ionicListDelegate) {
   var savedPositionString = localStorage.getItem('position2');
   if (savedPositionString) {
     $scope.savedPosition = JSON.parse(savedPositionString);
@@ -44,24 +44,16 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $scope.geowait = true;
-  $ionicPlatform.ready(function() {
-    window.navigator.geolocation.getCurrentPosition(function(position) {
-      $scope.savedPosition = {
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      };
-      var newJson = JSON.stringify($scope.savedPosition);
-      var oldJson = localStorage.getItem('position2');
-      if (newJson != oldJson) {
-        localStorage.setItem('position2', newJson);
-      }
-      $scope.$apply(function() {
-        $scope.nearbyStations = Arrivals.closestTo($scope.savedPosition, $scope.arrivals);
-        $scope.geowait = false;
-      });
+  var updateLocation = function() {
+    $scope.geowait = true;
+    MioLocation.locate().then(function(coords) {
+      $scope.savedPosition = coords;
+      $scope.nearbyStations = Arrivals.closestTo($scope.savedPosition, $scope.arrivals);
+      $scope.geowait = false;
     });
-  });
+  };
+  updateLocation();
+  $ionicPlatform.on('resume', updateLocation);
 
   $scope.stationView = function(stationName) {
     $state.go("station", {stationName: stationName});
@@ -80,7 +72,7 @@ angular.module('starter.controllers', [])
     }
     return res;
   };
-  
+
   $scope.timeboxClass = function(arrival) {
     var ret = {
       scheduled: arrival.scheduled
@@ -134,7 +126,7 @@ angular.module('starter.controllers', [])
     if (!trainId) return;
     $state.go("train", {trainId: trainId});
   };
-  
+
   $scope.refreshArrivals = function() {
     Arrivals.refresh().finally(function() {
       $scope.$broadcast('scroll.refreshComplete');

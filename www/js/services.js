@@ -121,6 +121,33 @@ angular.module('starter.services', [])
   }
 })
 
+.factory('MioLocation', function($ionicPlatform, $q) {
+  return {
+    locate: function() {
+      return readiedLocation().then(function(position) {
+        var coords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+        var newJson = JSON.stringify(coords);
+        var oldJson = localStorage.getItem('position2');
+        if (newJson != oldJson) {
+          localStorage.setItem('position2', newJson);
+        }
+        return coords;
+      });
+    }
+  }
+
+  function readiedLocation() {
+    return $q(function(resolve, reject) {
+      $ionicPlatform.ready(function() {
+        window.navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+    });
+  }
+})
+
 .factory('MioFavs', function() {
   var key = 'martaio-favorites';
   return {
