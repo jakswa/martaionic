@@ -19,7 +19,7 @@ marta.io displays realtime MARTA API results for trains, updated every 10s. It b
 
   After drilling down to station view, a second tap on a train takes you to that train's estimates. This is useful if you want to know when your train is estimated to arrive at a future station.
 
-## developing
+## Developing
 I'm so new to ionic that I don't know the official instructions for
 cloning and running this locally, but I bet it's close to something like:
 
