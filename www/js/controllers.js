@@ -53,7 +53,9 @@ angular.module('starter.controllers', [])
     });
   };
   updateLocation();
-  $ionicPlatform.on('resume', updateLocation);
+  $ionicPlatform.ready(function() {
+    $ionicPlatform.on('resume', updateLocation);
+  });
 
   $scope.stationView = function(stationName) {
     $state.go("station", {stationName: stationName});
