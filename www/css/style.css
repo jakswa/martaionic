@@ -91,10 +91,10 @@
 /* COLORS DUKE, THE COLORS */
 
 /* station */
-.gold-line .capstone { 
+.gold-line .capstone {
   background-color: #ffa700;
 }
-.red-line .capstone { 
+.red-line .capstone {
   background-color: #ff5100;
 }
 .green-line .capstone {
@@ -114,21 +114,21 @@
 .gold-line .time {
   color: #ffa700;
 }
-.gold-line.timebox { 
+.gold-line.timebox {
   border-color: #ffa700;
   background-color: #ffa700;
 }
 .red-line .time {
  color: #ff5100;
 }
-.red-line.timebox { 
+.red-line.timebox {
   border-color: #ff5100;
   background-color: #ff5100;
 }
 .green-line .time {
   color: green;
 }
-.green-line.timebox { 
+.green-line.timebox {
   border-color: green;
   background-color: green;
 }
@@ -160,7 +160,7 @@
     width: 700px;
     margin: 0 auto;
   }
-  .platform-browser .nav-bar-block[nav-bar=leaving], 
+  .platform-browser .nav-bar-block[nav-bar=leaving],
     .platform-browser .pane[nav-view=leaving] {
     visibility: hidden;
     overflow: hidden;

@@ -54,7 +54,8 @@ angular.module('starter.controllers', [])
   };
   updateLocation();
   $ionicPlatform.ready(function() {
-    $ionicPlatform.on('resume', updateLocation);
+    var deregister = $ionicPlatform.on('resume', updateLocation);
+    $scope.$on('$destroy', deregister);
   });
 
   $scope.stationView = function(stationName) {

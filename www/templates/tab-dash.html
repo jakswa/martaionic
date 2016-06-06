@@ -9,9 +9,9 @@
         <h3>no arrivals <span class="icon ion-code"></span></h3>
         <p>
           It could be outside of operating hours, or it could be
-          <a target="_blank" href="https://groups.google.com/forum/#!forum/atl-transit-developers">broken</a>.
+          <a href browse-to="https://groups.google.com/forum/#!forum/atl-transit-developers">broken</a>.
           If this persists, you could try
-          <a target="_blank" href="https://github.com/jakswa/martaionic/issues">bugging Jake here</a>.
+          <a href browse-to="https://github.com/jakswa/martaionic/issues">bugging Jake here</a>.
         </p>
       </div>
       <div ng-show="error" class="feedbox">
@@ -24,11 +24,11 @@
           Trying again shortly.
           <span ng-show="error.status != 500">
             Sometimes the MARTA realtime API does a
-            <a target="_system" href="https://groups.google.com/forum/#!forum/atl-transit-developers">broken</a>.
+            <a href browse-to="https://groups.google.com/forum/#!forum/atl-transit-developers">broken</a>.
           </span>
           <span>
             If this persists and you're doing a sad, you could try
-            <a target="_system" href="https://github.com/jakswa/martaionic/issues">bugging Jake here</a>.
+            <a href browse-to="https://github.com/jakswa/martaionic/issues">bugging Jake here</a>.
           </span>
         </p>
       </div>
@@ -85,5 +85,10 @@
         <span class="station-name">{{stationName}}</span>
       </ion-item>
     </ion-list>
+    <div class="tabs">
+      <a class="tab-item" browse-to="https://github.com/jakswa/martaionic">GitHub</a>
+      <a class="tab-item" browse-to="https://gitter.im/jakswa/martaionic">Chat</a>
+      <a class="tab-item" browse-to="https://twitter.com/martadotio">Twitter</a>
+    </div>
   </ion-content>
 </ion-view>

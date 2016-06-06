@@ -1,5 +1,25 @@
 angular.module('starter.services', [])
 
+.directive('browseTo', function ($ionicGesture, $ionicPlatform) {
+ return {
+  restrict: 'A',
+  link: function ($scope, $element, $attrs) {
+   var handleTap = function (e) {
+     if (ionic.Platform.is('browser')) {
+       window.open(encodeURI($attrs.browseTo), '_blank');
+     } else {
+       window.open(encodeURI($attrs.browseTo), '_system', 'location=yes');
+     }
+   };
+   var tapGesture = $ionicGesture.on('tap', handleTap, $element);
+   $scope.$on('$destroy', function () {
+    // Clean up - unbind drag gesture handler
+    $ionicGesture.off(tapGesture, 'tap', handleTap);
+   });
+  }
+ }
+})
+
 .factory('Arrivals', function ArrivalService($http, stationLocations) {
   var events = ['arrivalsChanged', 'apiError'];
   var subscribers = {
