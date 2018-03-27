@@ -1,3 +1,5 @@
+# deprecated - look at jakswa/marta_ui
+
 # martaionic [![Gitter](https://badges.gitter.im/jakswa/martaionic.svg)](https://gitter.im/jakswa/martaionic?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is where the common UI lives for http://marta.io and its sister mobile apps (on [android](https://play.google.com/store/apps/details?id=com.ionicframework.martaionic451202) and [iOS](https://itunes.apple.com/us/app/marta.io/id1082012161)).
